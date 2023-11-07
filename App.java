@@ -10,59 +10,55 @@ public class App {
         Personagem monstro = new Personagem("Lobo", 200, 100);
 
         Scanner ler = new Scanner(System.in);
-        
-        String cap1 = "Você acaba de cair em um mundo desconhecido onde está tudo nublado, exceto a única coisa que você consegue ver:"+
+
+        Capitulo capitulo1 = new Capitulo("1", principal, ler);       
+        capitulo1.Texto = "Você acaba de cair em um mundo desconhecido onde está tudo nublado, exceto a única coisa que você consegue ver:"+
         " uma árvore amarela com folhas caindo. Você escuta o som de um animal, porém a cada segundo, o barulho só aumenta.";
+        capitulo1.Escolha_1 = "Ficar esperando para ver o animal.";
+        capitulo1.Escolha_2 = "Se levantar e sair correndo.";
 
-        String cap1Esc1 = "Ficar esperando para ver o animal.";
 
-        String cap1Esc2 = "Se levantar e sair correndo.";
-
-        String cap2 = "[FINAL 1] - Você aguardou até ver que era um lobo-branco, famoso por assassinar viajantes.\n" + "Você corre e encontra uma madeira, conseguindo atingir o lobo que"+
+        Capitulo capitulo2 = new Capitulo("2", principal, ler);
+        
+        capitulo2.Texto = "[FINAL 1] - Você aguardou até ver que era um lobo-branco, famoso por assassinar viajantes.\n" + "Você corre e encontra uma madeira, conseguindo atingir o lobo que"+
         " recua, deixando escapar umas gotas de sangue pelo chão.\nInfelizmente você não teve chance." +
         "\nVocê morreu sendo devorado.";
 
-        String cap3 = "Você sai correndo e após um tempo, o animal para de correr em sua direção. Você vê uma humilde casa de taipa e sem teto, lhe vêm a mente se há algum morador.";
+        Capitulo capitulo3 = new Capitulo("3", principal, ler);
+        
+        capitulo3.Texto = "Você sai correndo e após um tempo, o animal para de correr em sua direção. Você vê uma humilde casa de taipa e sem teto, lhe vêm a mente se há algum morador.";
 
-        String cap3Esc1 = "Entrar na casa para investigar.";
+        capitulo3.Escolha_1 = "Entrar na casa para investigar.";
 
-        String cap3Esc2 = "Sair andando na esperança de algo melhor.";
+        capitulo3.Escolha_2 = "Sair andando na esperança de algo melhor.";
 
-        String cap4 = "[FINAL 2] \nVocê decide entrar na humilde casa, porém um fazendeiro lhe confunde com um ladrão pelas suas vestes.\n" +
+        Capitulo capitulo4 = new Capitulo("4", principal, ler);
+        capitulo4.Texto = "[FINAL 2] \nVocê decide entrar na humilde casa, porém um fazendeiro lhe confunde com um ladrão pelas suas vestes.\n" +
         "Olá, meu nome é " + fazendeiro.nome + ", e quem ousa entrar em minha casa?\n" +
         "Ele lhe ameaça com uma enxada, você tenta correr, mas não consegue escapar." +
         "\nVocê morreu com a cabeça decepada.";
 
-        String cap5 = "Você decide sair dalí.\nApós andar, andar e andar, você não encontra nada e está com fome e frio.\n" +
+        Capitulo capitulo5 = new Capitulo("5", principal, ler);
+        capitulo5.Texto = "Você decide sair dalí.\nApós andar, andar e andar, você não encontra nada e está com fome e frio.\n" +
         "Sua energia está quase esgotada e você decide sentar no chão. Você faleceu por hipotermia.";
 
-        System.out.println(cap1);
+        capitulo1.mostrar();
 
-        System.out.println("1 - "+cap1Esc1);
-
-        System.out.println("2 - "+cap1Esc2);
-
-        String escolha = ler.nextLine();
-
-        if(escolha.equals("1")){
-            System.out.println(cap2);
+        if(capitulo1.escolher() == 1){
+            capitulo2.mostrar();
             monstro.novaSaude(-10);
             monstro.novaEnergia(-50);
             principal.novaSaude(-100);
         }else{
-            System.out.println(cap3);
-
-            System.out.println("1 - "+cap3Esc1);
-            System.out.println("2 - "+cap3Esc2);
-            escolha = ler.nextLine();
+            capitulo3.mostrar();
             
-            if(escolha.equals("1")){
-                System.out.println(cap4);
+            if(capitulo3.escolher() == 1){
+                capitulo4.mostrar();
                 principal.novaEnergia(-40);
                 principal.novaSaude(-100);
             }else{
                 
-                System.out.println(cap5);
+                capitulo5.mostrar();
                 principal.novaEnergia(-90);
                 principal.novaSaude(-100);
 
