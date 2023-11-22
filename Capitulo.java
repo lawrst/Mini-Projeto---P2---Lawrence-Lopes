@@ -4,25 +4,33 @@ import java.util.Scanner;
 public class Capitulo {
     String Nome;
     String Texto;
-    String[] Escolhas;
+    Escolha[] Escolhas;
     Personagem personagem;
     int alteracaoEnergia;
     Scanner escaneador;
 
-    public Capitulo(String nome, String Texto, Personagem personagem, Scanner escaneador, String[] Escolhas) {
+    public void Executar(){
+        this.mostrar();
+        if(Escolhas != null){
+            int Escolha = this.escolher();
+            this.Escolhas[Escolha].proximo.Executar();
+        }
+    }
+
+    public Capitulo(String nome, String Texto, Personagem personagem, Scanner escaneador) {
         this.Nome = nome;
         this.personagem = personagem;
         this.escaneador = escaneador;
-        this.Escolhas = Escolhas;
         this.Texto = Texto;
         
     }
 
     public void mostrar(){
         System.out.println(Texto);
-
+        if(Escolhas != null){
         for(int i = 0; i < Escolhas.length; i++){
-            System.out.println("- " + Escolhas[i]);
+            System.out.println("- " + Escolhas[i].Texto);
+        }
         }
     }
 
@@ -39,9 +47,9 @@ public class Capitulo {
                 escolha = escaneador.nextLine();
 
                 for(int i = 0; i < Escolhas.length; i++){
-                    if(escolha.equals(Escolhas[i])){
+                    if(escolha.equals(Escolhas[i].Texto)){
                         valido = true;
-                        Escolhido = i + 1;
+                        Escolhido = i;
                     }
                 }
                 if(!valido){
