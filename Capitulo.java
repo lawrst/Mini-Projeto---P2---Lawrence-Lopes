@@ -2,19 +2,26 @@
 import java.util.Scanner;
 
 public class Capitulo {
-    String Nome;
-    String Texto;
-    Escolha[] Escolhas;
-    Personagem personagem;
-    int alteracaoEnergia;
-    Scanner escaneador;
+    private String Nome;
+    private String Texto;
+    private Escolha[] Escolhas;
+    private Personagem personagem;
+    private int alteracaoEnergia;
+    private Scanner escaneador;
 
     public void Executar(){
         this.mostrar();
+        if(alteracaoEnergia > 0){
+            personagem.removerEnergia(alteracaoEnergia);
+        }
         if(Escolhas != null){
             int Escolha = this.escolher();
             this.Escolhas[Escolha].proximo.Executar();
         }
+    }
+
+    public void setEscolhas(Escolha[] escolhas) {
+        Escolhas = escolhas;
     }
 
     public Capitulo(String nome, String Texto, Personagem personagem, Scanner escaneador) {
@@ -25,7 +32,8 @@ public class Capitulo {
         
     }
 
-    public void mostrar(){
+    private void mostrar(){
+        System.out.println(this.Nome);
         System.out.println(Texto);
         if(Escolhas != null){
         for(int i = 0; i < Escolhas.length; i++){
@@ -34,7 +42,11 @@ public class Capitulo {
         }
     }
 
-    public int escolher(){
+    public void setAlteracaoEnergia(int alteracaoEnergia) {
+        this.alteracaoEnergia = alteracaoEnergia;
+    }
+
+    private int escolher(){
         int Escolhido = 0;
         String escolha;
         boolean valido = false;

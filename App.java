@@ -15,21 +15,22 @@ public class App {
         Capitulo capitulo2 = new Capitulo("[FINAL 1]", "- Você aguardou até ver que era um lobo-branco, famoso por assassinar viajantes.\n" + "Você corre e encontra uma madeira, conseguindo atingir o lobo que"+
         " recua, deixando escapar umas gotas de sangue pelo chão.\nInfelizmente você não teve chance." +
         "\nVocê morreu sendo devorado.", principal, ler);
+        capitulo2.setAlteracaoEnergia(30);
 
         Capitulo capitulo3 = new Capitulo("Capitulo 3", "Você sai correndo e após um tempo, o animal para de correr em sua direção. Você vê uma humilde casa de taipa e sem teto, lhe vêm a mente se há algum morador.",
         principal, ler);
 
         Capitulo capitulo4 = new Capitulo("[FINAL 2]", "\nVocê decide entrar na humilde casa, porém um fazendeiro lhe confunde com um ladrão pelas suas vestes.\n" +
-        "Olá, meu nome é " + fazendeiro.nome + ", e quem ousa entrar em minha casa?\n" +
+        "Olá, meu nome é " + fazendeiro.getNome() + ", e quem ousa entrar em minha casa?\n" +
         "Ele lhe ameaça com uma enxada, você tenta correr, mas não consegue escapar." +
         "\nVocê morreu com a cabeça decepada.", principal, ler);
 
         Capitulo capitulo5 = new Capitulo("Capitulo 5", "Você decide sair dalí.\nApós andar, andar e andar, você não encontra nada e está com fome e frio.\n" +
         "Sua energia está quase esgotada e você decide sentar no chão. Você faleceu por hipotermia.", principal, ler);
 
-        capitulo1.Escolhas = new Escolha[]{new Escolha("Ficar esperando para ver o animal.", capitulo2), new Escolha("Se levantar e sair correndo.", capitulo3)};
+        capitulo1.setEscolhas(new Escolha[]{new Escolha("Ficar esperando para ver o animal.", capitulo2), new Escolha("Se levantar e sair correndo.", capitulo3)});
 
-        capitulo3.Escolhas = new Escolha[]{new Escolha("Entrar na casa para investigar.", capitulo4), new Escolha("Sair andando na esperanca de algo melhor.", capitulo5)};
+        capitulo3.setEscolhas(new Escolha[]{new Escolha("Entrar na casa para investigar.", capitulo4), new Escolha("Sair andando na esperanca de algo melhor.", capitulo5)});
 
         capitulo1.Executar();
 
