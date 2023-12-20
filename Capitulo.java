@@ -1,10 +1,10 @@
-
 import java.util.Scanner;
 
 public class Capitulo {
     private String Nome;
     private String Texto;
     private Escolha[] Escolhas;
+    private int idEscolha = 0;
     private Personagem personagem;
     private int alteracaoEnergia;
     private Scanner escaneador;
@@ -14,10 +14,16 @@ public class Capitulo {
         if(alteracaoEnergia > 0){
             personagem.removerEnergia(alteracaoEnergia);
         }
-        if(Escolhas != null){
+        if(idEscolha > 0){
             int Escolha = this.escolher();
             this.Escolhas[Escolha].proximo.Executar();
         }
+    }
+
+    public void addEscolha(String texto, Capitulo escolha){
+        Escolhas[idEscolha] = new Escolha(texto, escolha);
+
+        idEscolha += 1;
     }
 
     public void setEscolhas(Escolha[] escolhas) {
@@ -29,13 +35,13 @@ public class Capitulo {
         this.personagem = personagem;
         this.escaneador = escaneador;
         this.Texto = Texto;
-        
+        this.Escolhas = new Escolha[2];
     }
 
     private void mostrar(){
         System.out.println(this.Nome);
-        System.out.println(Texto);
-        if(Escolhas != null){
+        System.out.println(Texto.replace("@@","\n"));
+        if(idEscolha > 0){
         for(int i = 0; i < Escolhas.length; i++){
             System.out.println("- " + Escolhas[i].Texto);
         }
@@ -51,7 +57,7 @@ public class Capitulo {
         String escolha;
         boolean valido = false;
 
-        if(Escolhas.length == 0){
+        if(idEscolha == 0){
             System.out.println("Fim de jogo! Reinicie para começar novamente!");
             return -1;
         } else {

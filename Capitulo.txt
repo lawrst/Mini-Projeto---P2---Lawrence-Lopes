@@ -1,0 +1,49 @@
+[CAPÍTULO]
+Capitulo 1:
+Você acaba de cair em um mundo desconhecido onde está tudo nublado, exceto a única coisa que você consegue ver: uma árvore amarela com folhas caindo. Você escuta o som de um animal, porém a cada segundo, o barulho só aumenta.
+Lawrence
+0
+
+[CAPÍTULO]
+[FINAL 1]
+- Você aguardou até ver que era um lobo-branco, famoso por assassinar viajantes.@@ Você corre e encontra uma madeira, conseguindo atingir o lobo que recua, deixando escapar umas gotas de sangue pelo chão.@@ Infelizmente você não teve chance.@@ Você morreu sendo devorado.
+Lawrence
+30
+
+[CAPÍTULO]
+Capitulo 3:
+Você sai correndo e após um tempo, o animal para de correr em sua direção. Você vê uma humilde casa de taipa e sem teto, lhe vêm a mente se há algum morador.
+Lawrence
+0
+
+[CAPÍTULO]
+[FINAL 2]
+ - Você decide entrar na humilde casa, porém um fazendeiro lhe confunde com um ladrão pelas suas vestes. @@ Olá, meu nome é Link e quem ousa entrar em minha casa?@@ Ele lhe ameaça com uma enxada, você tenta correr, mas não consegue escapar.@@ Você morreu com a cabeça decepada.
+Lawrence
+0
+
+[CAPÍTULO]
+[FINAL 3]
+ - Você decide sair dalí.@@ Após andar, andar e andar, você não encontra nada e está com fome e frio. @@ Sua energia está quase esgotada e você decide sentar no chão. Você faleceu por hipotermia.
+Lawrence
+0
+
+[ESCOLHA]
+Capitulo 1:
+Ficar esperando para ver o animal.
+[FINAL 1]
+
+[ESCOLHA]
+Capitulo 1:
+Se levantar e sair correndo.
+Capitulo 3:
+
+[ESCOLHA]
+Capitulo 3:
+Entrar na casa para investigar.
+[FINAL 2]
+
+[ESCOLHA]
+Capitulo 3:
+Sair andando na esperanca de algo melhor.
+[FINAL 3]

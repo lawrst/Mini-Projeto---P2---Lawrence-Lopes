@@ -1,0 +1,14 @@
+[PERSONAGEM]
+Lawrence
+100
+100
+
+[PERSONAGEM]
+Link
+100
+100
+
+[PERSONAGEM]
+Lobo
+200
+100

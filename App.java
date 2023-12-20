@@ -1,39 +1,72 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        Personagem principal = new Personagem("Lawrence", 100, 100);
-        Personagem fazendeiro = new Personagem("Link", 100, 100);
-        Personagem monstro = new Personagem("Lobo", 200, 100);
+        List<String> lista = lerArquivoEExibirConteudo("Personagem.txt");
+        Map<String, Personagem> ListaPersonagem = new HashMap<String, Personagem>();
+        Map<String, Capitulo> ListaCapitulo = new HashMap<String, Capitulo>();
 
         Scanner ler = new Scanner(System.in);
 
-        Capitulo capitulo1 = new Capitulo("Capitulo 1: ", "Você acaba de cair em um mundo desconhecido onde está tudo nublado, exceto a única coisa que você consegue ver:"+
-        " uma árvore amarela com folhas caindo. Você escuta o som de um animal, porém a cada segundo, o barulho só aumenta.", principal, ler);
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).equals("[PERSONAGEM]")){
+                String nome = lista.get(i+1);
+                int energia = Integer.parseInt(lista.get(i+2));
+                int saude = Integer.parseInt(lista.get(i+3));
+                Personagem temporario = new Personagem(nome, energia, saude);
+                ListaPersonagem.put(nome, temporario);
+            }
+        }
+        lista = lerArquivoEExibirConteudo("Capitulo.txt");
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).equals("[CAPÍTULO]")){
+                String nome = lista.get(i+1);
+                String texto = lista.get(i+2);
+                Personagem persona = ListaPersonagem.get(lista.get(i+3));
+                int energia = Integer.parseInt(lista.get(i+4));
+                Capitulo capTemporario = new Capitulo(nome, texto, persona, ler);
+                capTemporario.setAlteracaoEnergia(energia);
+                ListaCapitulo.put(nome, capTemporario);
+            }
+            if(lista.get(i).equals("[ESCOLHA]")){
+                String origem = lista.get(i+1);
+                String texto = lista.get(i+2);
+                String destino = lista.get(i+3);
+                Capitulo temp = ListaCapitulo.get(destino);
+                Capitulo original = ListaCapitulo.get(origem);
+                original.addEscolha(texto, temp);
+                //ListaCapitulo.get(origem).addEscolha(texto, ListaCapitulo.get(destino));
+        
+            }
+        }
 
-        Capitulo capitulo2 = new Capitulo("[FINAL 1]", "- Você aguardou até ver que era um lobo-branco, famoso por assassinar viajantes.\n" + "Você corre e encontra uma madeira, conseguindo atingir o lobo que"+
-        " recua, deixando escapar umas gotas de sangue pelo chão.\nInfelizmente você não teve chance." +
-        "\nVocê morreu sendo devorado.", principal, ler);
-        capitulo2.setAlteracaoEnergia(30);
-
-        Capitulo capitulo3 = new Capitulo("Capitulo 3", "Você sai correndo e após um tempo, o animal para de correr em sua direção. Você vê uma humilde casa de taipa e sem teto, lhe vêm a mente se há algum morador.",
-        principal, ler);
-
-        Capitulo capitulo4 = new Capitulo("[FINAL 2]", "\nVocê decide entrar na humilde casa, porém um fazendeiro lhe confunde com um ladrão pelas suas vestes.\n" +
-        "Olá, meu nome é " + fazendeiro.getNome() + ", e quem ousa entrar em minha casa?\n" +
-        "Ele lhe ameaça com uma enxada, você tenta correr, mas não consegue escapar." +
-        "\nVocê morreu com a cabeça decepada.", principal, ler);
-
-        Capitulo capitulo5 = new Capitulo("Capitulo 5", "Você decide sair dalí.\nApós andar, andar e andar, você não encontra nada e está com fome e frio.\n" +
-        "Sua energia está quase esgotada e você decide sentar no chão. Você faleceu por hipotermia.", principal, ler);
-
-        capitulo1.setEscolhas(new Escolha[]{new Escolha("Ficar esperando para ver o animal.", capitulo2), new Escolha("Se levantar e sair correndo.", capitulo3)});
-
-        capitulo3.setEscolhas(new Escolha[]{new Escolha("Entrar na casa para investigar.", capitulo4), new Escolha("Sair andando na esperanca de algo melhor.", capitulo5)});
-
-        capitulo1.Executar();
+        ListaCapitulo.get("Capitulo 1:").Executar();
 
         ler.close();
     }
+
+    public static List<String> lerArquivoEExibirConteudo(String nomeArquivo) {
+    List<String> retorno = new ArrayList<String>();
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
+        String linha;
+        System.out.println("Conteúdo do arquivo " + nomeArquivo + ":");
+        while ((linha = reader.readLine()) != null) {
+            retorno.add(linha);
+        }
+        
+    } catch (IOException e) {
+        System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+    }
+    return retorno;
+}
+
 }
